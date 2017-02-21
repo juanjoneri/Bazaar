@@ -1,0 +1,63 @@
+Script started on Mon 20 Feb 2017 04:21:31 PM PST
+Welcome to Bash, juanj
+
+Uptime:  16:21:31 up 33 min,  1 user,  load average: 0.22, 0.17, 0.16
+
+ ________________________________________________________________________
+/ Q:      How many marketing people does it take to change a light bulb? \
+\ A:      I'll have to get back to you on that.                          /
+ ------------------------------------------------------------------------
+        \   ^__^
+         \  (@@)\_______
+            (__)\       )\/\
+                ||----w |
+                ||     ||
+
+juanj @ ~/Documents/Projects/Bazar/Assembly[38;5;15m [master !x?]480 $ CFLAGS="-g -O0" make simplecc -g -O0    add.c   -o add
+
+juanj @ ~/Documents/Projects/Bazar/Assembly[38;5;15m [master !x?]481 $ gdb add
+
+(gdb) break main
+Breakpoint 1 at 0x4004da: file add.c, line 5.
+
+(gdb) run
+Starting program: /home/juanj/Documents/Projects/Bazar/Assembly/add
+Breakpoint 1, main () at add.c:5
+5		int a = 5;
+
+(gdb) next 2
+7		return 0;
+
+(gdb) disassemble
+Dump of assembler code for function main:
+   0x00000000004004d6 <+0>:	push   %rbp
+   0x00000000004004d7 <+1>:	mov    %rsp,%rbp
+   0x00000000004004da <+4>:	movl   $0x5,-0x8(%rbp)
+   0x00000000004004e1 <+11>:	mov    -0x8(%rbp),%eax
+   0x00000000004004e4 <+14>:	add    $0x6,%eax
+   0x00000000004004e7 <+17>:	mov    %eax,-0x4(%rbp)
+=> 0x00000000004004ea <+20>:	mov    $0x0,%eax
+   0x00000000004004ef <+25>:	pop    %rbp
+   0x00000000004004f0 <+26>:	retq
+End of assembler dump.
+
+(gdb) x &a
+0x7fffffffdc48:	0x00000005
+
+(gdb) x $rbp - 8
+0x7fffffffdc48:	0x00000005
+
+(gdb) x &b
+0x7fffffffdc4c:	0x0000000b
+
+(gdb) x $rbp - 0xc
+0x7fffffffdc44:	0x00007fff
+
+(gdb) Quit
+A debugging session is active.
+
+	Inferior 1 [process 4508] will be killed.
+
+Quit anyway? (y or n) y
+juanj @ ~/Documents/Projects/Bazar/Assembly[38;5;15m [master !x?]
+Script done on Mon 20 Feb 2017 04:32:46 PM PST

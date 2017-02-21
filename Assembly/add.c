@@ -1,3 +1,5 @@
+// Nice tutorial explaning the steps followed here at:
+// https://www.recurse.com/blog/7-understanding-c-by-learning-assembly
 int main ()
 {
 	int a = 5;
