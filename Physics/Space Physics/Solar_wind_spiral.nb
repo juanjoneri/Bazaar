@@ -1,0 +1,153 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      5539,        145]
+NotebookOptionsPosition[      5222,        129]
+NotebookOutlinePosition[      5567,        144]
+CellTagsIndexPosition[      5524,        141]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"Ws", "=", "0.001745"}], ";"}], " ", 
+  RowBox[{"(*", 
+   RowBox[{"radians", " ", "per", " ", "second"}], 
+   "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"Ro", "=", "700000000"}], ";"}], " ", 
+  RowBox[{"(*", "meters", "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"p", "[", 
+    RowBox[{"x_", ",", "left_", ",", "right_"}], "]"}], ":=", 
+   RowBox[{
+    RowBox[{"HeavisideTheta", "[", 
+     RowBox[{"x", "-", "left"}], "]"}], " ", 
+    RowBox[{"HeavisideTheta", "[", 
+     RowBox[{"right", "-", "x"}], "]"}]}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"r", "[", 
+    RowBox[{"th_", ",", "th0_", ",", "V_"}], "]"}], ":=", 
+   RowBox[{"Ro", "+", 
+    RowBox[{"V", " ", 
+     FractionBox[
+      RowBox[{"th", " ", "-", " ", "th0"}], "Ws"]}]}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"Manipulate", "[", 
+  RowBox[{
+   RowBox[{"PolarPlot", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"r", "[", 
+        RowBox[{"th", ",", "0", ",", "V"}], "]"}], ",", 
+       RowBox[{
+        RowBox[{"r", "[", 
+         RowBox[{"th", ",", 
+          RowBox[{"Pi", "/", "3"}], ",", 
+          RowBox[{"2", "*", "V"}]}], "]"}], "*", 
+        RowBox[{"p", "[", 
+         RowBox[{"th", ",", 
+          RowBox[{"Pi", "/", "3"}], " ", ",", 
+          RowBox[{"2", "*", "Pi"}]}], "]"}]}], ",", "Ro"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"th", ",", "0", ",", 
+       RowBox[{"2", "*", "Pi"}]}], "}"}]}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"V", ",", "300000", ",", "2000000"}], "}"}]}], "]"}]}], "Input",
+ CellChangeTimes->{{3.696895498001029*^9, 3.696895572155507*^9}, {
+  3.696895618066128*^9, 3.6968956823416257`*^9}, {3.696895716242428*^9, 
+  3.696895855749302*^9}, {3.6968962675264645`*^9, 3.6968963158911457`*^9}, {
+  3.6968963890702996`*^9, 3.696896568075466*^9}, {3.696896646983533*^9, 
+  3.6968966477295246`*^9}, {3.6968967336398363`*^9, 3.6968967416409683`*^9}, {
+  3.696896782613283*^9, 3.696896782702525*^9}, {3.6968971068219805`*^9, 
+  3.696897146363309*^9}, {3.696897223372753*^9, 3.6968972544961767`*^9}, {
+  3.696897325400693*^9, 3.6968973411523724`*^9}, {3.6968973831280804`*^9, 
+  3.696897398463238*^9}, {3.696897807577529*^9, 3.696897846279956*^9}, {
+  3.696897897826248*^9, 3.6968979046165595`*^9}}],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`V$$ = 1.81*^6, Typeset`show$$ = True, 
+    Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{
+      Hold[$CellContext`V$$], 300000, 2000000}}, Typeset`size$$ = {
+    360., {155., 161.}}, Typeset`update$$ = 0, Typeset`initDone$$, 
+    Typeset`skipInitDone$$ = True, $CellContext`V$585$$ = 0}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, "Variables" :> {$CellContext`V$$ = 300000}, 
+      "ControllerVariables" :> {
+        Hold[$CellContext`V$$, $CellContext`V$585$$, 0]}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> PolarPlot[{
+         $CellContext`r[$CellContext`th, 
+          0, $CellContext`V$$], $CellContext`r[$CellContext`th, Pi/3, 
+           2 $CellContext`V$$] $CellContext`p[$CellContext`th, Pi/3, 2 
+           Pi], $CellContext`Ro}, {$CellContext`th, 0, 2 Pi}], 
+      "Specifications" :> {{$CellContext`V$$, 300000, 2000000}}, 
+      "Options" :> {}, "DefaultOptions" :> {}],
+     ImageSizeCache->{411., {201., 208.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{{3.6968958262749386`*^9, 3.6968958562353363`*^9}, 
+   3.6968962803087373`*^9, {3.696896557333366*^9, 3.696896569392214*^9}, 
+   3.6968966488871713`*^9, 3.6968967454196873`*^9, 3.6968967837076497`*^9, 
+   3.6968971468599043`*^9, {3.6968972280530577`*^9, 3.696897254874571*^9}, {
+   3.6968973324404964`*^9, 3.6968973417254157`*^9}, {3.696897389646351*^9, 
+   3.6968974001634407`*^9}, 3.6968978575079126`*^9, {3.6968978996140895`*^9, 
+   3.696897905642462*^9}, 3.696900673555787*^9}]
+}, Open  ]]
+},
+WindowSize->{1040, 833},
+WindowMargins->{{Automatic, 693}, {Automatic, 197}},
+FrontEndVersion->"11.0 for Microsoft Windows (64-bit) (July 28, 2016)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 2351, 60, 126, "Input"],
+Cell[2934, 84, 2272, 42, 426, "Output"]
+}, Open  ]]
+}
+]
+*)
+
