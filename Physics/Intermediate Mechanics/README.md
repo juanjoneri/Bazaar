@@ -19,7 +19,8 @@
  - *Chapter 7:* **Lagrange's Equations**
     - [X] Problem 7.42
  - *Chapter 8:* **Two-Body Central Force Problems**
-    - [X] Problem 8.25 - *Chapter 9:* **Mechanics in Nonintertial Frames**
+    - [X] Problem 8.25
+ - *Chapter 9:* **Mechanics in Nonintertial Frames**
     - [X] Problem 9.24
  - *Chapter 10:* **Rotational Motion of Rigid Bodies**
     - [ ] Problem 10.54
