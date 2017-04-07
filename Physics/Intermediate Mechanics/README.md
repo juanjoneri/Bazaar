@@ -9,7 +9,7 @@
  - *Chapter 2:* **Projectiles and Charged Particles**
     - [ ] Problem 2.43
  - *Chapter 3:* **Momentum and Angular Momentum**
-    - [ ] Problem 3.23
+    - [X] Problem 3.23
  - *Chapter 4:* **Energy**
     - [ ] Problem 4.38
  - *Chapter 5:* **Oscillations**
