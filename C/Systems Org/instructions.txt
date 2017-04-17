@@ -1,0 +1,7 @@
+By now you should have installed onto your computer both a C compiler and the NASM (or equivalent) Assembler.  (This was part B of the previous assignment.)
+
+In each case, a C main program (caller) is given to you and a specific assembly language subroutine needs to be written by you. 
+
+You are to compile the C program, write and assemble the required assembly language subroutine code, link everything together and run correctly.  The C and assembly source code together with a screenshot of the output for each of the following problems are to be submitted.
+
+nasm -felf64 maxofthree.asm && gcc callmaxofthree.c maxofthree.o && ./a.out
