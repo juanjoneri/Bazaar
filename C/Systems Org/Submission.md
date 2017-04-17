@@ -42,13 +42,13 @@ mov     rdi, rsi
 mov     rsi, rdx
 call    _gcd
 ret
+```
 
 ## Problem 3
 
 ![Problem 3](./3q.PNG)
 
 ### Test Code
-```
 
 ```c
 #include <stdio.h>
@@ -67,6 +67,16 @@ int main() {
 ```
 
 ### Answer Code
+
+```asm
+        global  _byteswap
+        section .text
+_byteswap:
+        mov     eax, [rdi]
+        bswap   eax
+        mov     [rdi], eax
+        ret
+```
 
 ## Problem 6
 
@@ -94,6 +104,21 @@ int main() {
 ```
 
 ### Answer Code
+
+```asm
+        global   _power_of_difference
+        extern   _pow
+        section  .text
+
+_power_of_difference:
+        push     rbp
+        subsd    xmm0, xmm1
+        cvtsi2sd xmm1, edi
+        call     _pow
+        pop      rbp
+        ret
+
+```
 
 # Output
 The code was run in my friend's computer because I do not own a mac (That's why bash says Natalia)
