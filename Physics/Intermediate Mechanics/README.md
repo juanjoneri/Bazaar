@@ -7,7 +7,7 @@
  - *Chapter 1:* **Newton's laws of motion**
     - [X] Problem 1.50
  - *Chapter 2:* **Projectiles and Charged Particles**
-    - [ ] Problem 2.43
+    - [X] Problem 2.43
  - *Chapter 3:* **Momentum and Angular Momentum**
     - [X] Problem 3.23
  - *Chapter 4:* **Energy**

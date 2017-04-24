@@ -10,23 +10,35 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[     76043,       1644]
-NotebookOptionsPosition[     73945,       1568]
-NotebookOutlinePosition[     74318,       1584]
-CellTagsIndexPosition[     74275,       1581]
+NotebookDataLength[     76699,       1665]
+NotebookOptionsPosition[     74492,       1585]
+NotebookOutlinePosition[     74863,       1601]
+CellTagsIndexPosition[     74820,       1598]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
 Notebook[{
 
 Cell[CellGroupData[{
-Cell["Chapter 8", "Section",
- CellChangeTimes->{{3.6975154317219563`*^9, 3.6975154370748014`*^9}}],
+Cell["Two-Body Central Force Problems", "Title",
+ CellChangeTimes->{{3.6820925905182376`*^9, 3.682092595649841*^9}, {
+  3.7020319711057587`*^9, 3.7020319815118227`*^9}, {3.7020320963836465`*^9, 
+  3.702032097297262*^9}}],
+
+Cell["Juan Jose Neri", "Subtitle",
+ CellChangeTimes->{{3.6820926374445724`*^9, 3.682092641724166*^9}}],
 
 Cell[CellGroupData[{
 
-Cell["problem 8.25", "Subsection",
- CellChangeTimes->{{3.6975154519733*^9, 3.6975154577700367`*^9}}],
+Cell["", "Section",
+ CellChangeTimes->{{3.6975154317219563`*^9, 3.6975154370748014`*^9}, {
+  3.7020321104711094`*^9, 3.702032111853789*^9}}],
+
+Cell[CellGroupData[{
+
+Cell["Problem 8.25", "Subsection",
+ CellChangeTimes->{{3.6975154519733*^9, 3.6975154577700367`*^9}, {
+  3.7020321272170076`*^9, 3.702032127559905*^9}}],
 
 Cell[TextData[{
  "Consider a particle with mass ",
@@ -632,8 +644,9 @@ Cell[BoxData[
                    None, Evaluator -> Automatic, Method -> "Preemptive"], 
                   Alignment -> {Center, Center}, ImageSize -> 
                   Dynamic[{
-                    Automatic, 3.5 CurrentValue["FontCapHeight"]/
-                    AbsoluteCurrentValue[Magnification]}]], 
+                    Automatic, 
+                    3.5 (CurrentValue["FontCapHeight"]/AbsoluteCurrentValue[
+                    Magnification])}]], 
                  GraphicsBox[{{{{}, {}, {
                     Directive[
                     Opacity[1.], 
@@ -687,8 +700,9 @@ J3BdZDfmP252HSSUtjhA9slQQYWD6j+ZnB5N+yE5QJUjKVAGUO8/fPvEGg==
                    GridLines -> {None, None}, GridLinesStyle -> Directive[
                     GrayLevel[0.5, 0.4]], ImageSize -> 
                    Dynamic[{
-                    Automatic, 3.5 CurrentValue["FontCapHeight"]/
-                    AbsoluteCurrentValue[Magnification]}], 
+                    Automatic, 
+                    3.5 (CurrentValue["FontCapHeight"]/AbsoluteCurrentValue[
+                    Magnification])}], 
                    Method -> {
                     "DefaultBoundaryStyle" -> Automatic, "DefaultMeshStyle" -> 
                     AbsolutePointSize[6], "ScalingFunctions" -> None, 
@@ -751,8 +765,9 @@ J3BdZDfmP252HSSUtjhA9slQQYWD6j+ZnB5N+yE5QJUjKVAGUO8/fPvEGg==
                    None, Evaluator -> Automatic, Method -> "Preemptive"], 
                   Alignment -> {Center, Center}, ImageSize -> 
                   Dynamic[{
-                    Automatic, 3.5 CurrentValue["FontCapHeight"]/
-                    AbsoluteCurrentValue[Magnification]}]], 
+                    Automatic, 
+                    3.5 (CurrentValue["FontCapHeight"]/AbsoluteCurrentValue[
+                    Magnification])}]], 
                  GraphicsBox[{{{{}, {}, {
                     Directive[
                     Opacity[1.], 
@@ -806,8 +821,9 @@ J3BdZDfmP252HSSUtjhA9slQQYWD6j+ZnB5N+yE5QJUjKVAGUO8/fPvEGg==
                    GridLines -> {None, None}, GridLinesStyle -> Directive[
                     GrayLevel[0.5, 0.4]], ImageSize -> 
                    Dynamic[{
-                    Automatic, 3.5 CurrentValue["FontCapHeight"]/
-                    AbsoluteCurrentValue[Magnification]}], 
+                    Automatic, 
+                    3.5 (CurrentValue["FontCapHeight"]/AbsoluteCurrentValue[
+                    Magnification])}], 
                    Method -> {
                     "DefaultBoundaryStyle" -> Automatic, "DefaultMeshStyle" -> 
                     AbsolutePointSize[6], "ScalingFunctions" -> None, 
@@ -1565,9 +1581,10 @@ l08=
 }, Open  ]]
 }, Open  ]]
 }, Open  ]]
+}, Open  ]]
 },
-WindowSize->{852, 1358},
-WindowMargins->{{Automatic, 421}, {Automatic, 0}},
+WindowSize->{851, 877},
+WindowMargins->{{-7, Automatic}, {Automatic, 0}},
 Magnification:>0.9 Inherited,
 FrontEndVersion->"11.0 for Microsoft Windows (64-bit) (July 28, 2016)",
 StyleDefinitions->"Default.nb"
@@ -1584,64 +1601,68 @@ CellTagsIndex->{}
 (*NotebookFileOutline
 Notebook[{
 Cell[CellGroupData[{
-Cell[580, 22, 98, 1, 61, "Section"],
+Cell[580, 22, 220, 3, 91, "Title"],
+Cell[803, 27, 102, 1, 50, "Subtitle"],
 Cell[CellGroupData[{
-Cell[703, 27, 100, 1, 45, "Subsection"],
-Cell[806, 30, 2477, 84, 157, "Text"]
+Cell[930, 32, 140, 2, 61, "Section"],
+Cell[CellGroupData[{
+Cell[1095, 38, 151, 2, 45, "Subsection"],
+Cell[1249, 42, 2477, 84, 157, "Text"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[3320, 119, 150, 2, 45, "Subsection"],
-Cell[3473, 123, 788, 23, 41, "Text"],
-Cell[4264, 148, 590, 18, 36, "Text"],
-Cell[4857, 168, 122, 1, 28, "Text"],
-Cell[4982, 171, 380, 12, 41, "Text"],
-Cell[5365, 185, 130, 1, 28, "Text"],
-Cell[5498, 188, 572, 17, 38, "Text"]
+Cell[3763, 131, 150, 2, 45, "Subsection"],
+Cell[3916, 135, 788, 23, 41, "Text"],
+Cell[4707, 160, 590, 18, 36, "Text"],
+Cell[5300, 180, 122, 1, 28, "Text"],
+Cell[5425, 183, 380, 12, 41, "Text"],
+Cell[5808, 197, 130, 1, 28, "Text"],
+Cell[5941, 200, 572, 17, 38, "Text"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[6107, 210, 147, 2, 45, "Subsection"],
+Cell[6550, 222, 147, 2, 45, "Subsection"],
 Cell[CellGroupData[{
-Cell[6279, 216, 500, 13, 40, "Subsubsection"],
-Cell[6782, 231, 363, 12, 46, "Input"],
+Cell[6722, 228, 500, 13, 40, "Subsubsection"],
+Cell[7225, 243, 363, 12, 46, "Input"],
 Cell[CellGroupData[{
-Cell[7170, 247, 299, 7, 27, "Input"],
-Cell[7472, 256, 353, 10, 45, "Output"]
+Cell[7613, 259, 299, 7, 27, "Input"],
+Cell[7915, 268, 353, 10, 45, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[7862, 271, 154, 3, 27, "Input"],
-Cell[8019, 276, 246, 6, 27, "Output"]
+Cell[8305, 283, 154, 3, 27, "Input"],
+Cell[8462, 288, 246, 6, 27, "Output"]
 }, Open  ]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[8314, 288, 516, 11, 61, "Subsubsection"],
+Cell[8757, 300, 516, 11, 61, "Subsubsection"],
 Cell[CellGroupData[{
-Cell[8855, 303, 675, 20, 27, "Input"],
-Cell[9533, 325, 7046, 127, 236, "Output"]
+Cell[9298, 315, 675, 20, 27, "Input"],
+Cell[9976, 337, 7046, 127, 203, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[16616, 457, 317, 8, 27, "Input"],
-Cell[16936, 467, 238, 4, 27, "Output"]
+Cell[17059, 469, 317, 8, 27, "Input"],
+Cell[17379, 479, 238, 4, 27, "Output"]
 }, Open  ]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[17223, 477, 315, 5, 35, "Subsubsection"],
-Cell[17541, 484, 507, 16, 36, "Text"],
-Cell[18051, 502, 683, 23, 36, "Text"],
-Cell[18737, 527, 282, 9, 28, "Text"],
-Cell[19022, 538, 416, 13, 35, "Text"],
-Cell[19441, 553, 123, 1, 28, "Text"],
-Cell[19567, 556, 370, 13, 36, "Text"],
+Cell[17666, 489, 315, 5, 35, "Subsubsection"],
+Cell[17984, 496, 507, 16, 36, "Text"],
+Cell[18494, 514, 683, 23, 36, "Text"],
+Cell[19180, 539, 282, 9, 28, "Text"],
+Cell[19465, 550, 416, 13, 35, "Text"],
+Cell[19884, 565, 123, 1, 28, "Text"],
+Cell[20010, 568, 370, 13, 36, "Text"],
 Cell[CellGroupData[{
-Cell[19962, 573, 169, 4, 27, "Input"],
-Cell[20134, 579, 142, 2, 27, "Output"]
+Cell[20405, 585, 169, 4, 27, "Input"],
+Cell[20577, 591, 142, 2, 27, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[20313, 586, 835, 24, 37, "Input"],
-Cell[21151, 612, 14203, 277, 65, "Output"]
+Cell[20756, 598, 835, 24, 37, "Input"],
+Cell[21594, 624, 14295, 281, 65, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[35391, 894, 511, 12, 27, "Input"],
-Cell[35905, 908, 37988, 654, 378, "Output"]
+Cell[35926, 910, 511, 12, 27, "Input"],
+Cell[36440, 924, 37988, 654, 378, "Output"]
+}, Open  ]]
 }, Open  ]]
 }, Open  ]]
 }, Open  ]]
