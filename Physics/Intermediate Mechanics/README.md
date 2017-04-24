@@ -11,7 +11,7 @@
  - *Chapter 3:* **Momentum and Angular Momentum**
     - [X] Problem 3.23
  - *Chapter 4:* **Energy**
-    - [ ] Problem 4.38
+    - [X] Problem 4.38
  - *Chapter 5:* **Oscillations**
     - [ ] Problem 5.32
  - *Chapter 6:* **Calculus of Variations**
