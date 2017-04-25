@@ -25,4 +25,4 @@
  - *Chapter 10:* **Rotational Motion of Rigid Bodies**
     - [X] Problem 10.54
  - *Chapter 11:* **Coupled Oscillations and Normal Modes**
-    - [ ] Problem 11.8
+    - [X] Problem 11.7
