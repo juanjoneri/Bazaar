@@ -23,6 +23,6 @@
  - *Chapter 9:* **Mechanics in Nonintertial Frames**
     - [X] Problem 9.24
  - *Chapter 10:* **Rotational Motion of Rigid Bodies**
-    - [ ] Problem 10.54
+    - [X] Problem 10.54
  - *Chapter 11:* **Coupled Oscillations and Normal Modes**
     - [ ] Problem 11.8
