@@ -26,3 +26,7 @@
     - [X] Problem 10.54
  - *Chapter 11:* **Coupled Oscillations and Normal Modes**
     - [X] Problem 11.7
+
+#### *Further Topics*
+ - *Chapter 12:* **Nonlinear Mechanics and Chaos**
+    - [X] Problem 12.7
