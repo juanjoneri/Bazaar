@@ -13,7 +13,7 @@
  - *Chapter 4:* **Energy**
     - [X] Problem 4.38
  - *Chapter 5:* **Oscillations**
-    - [ ] Problem 5.32
+    - [X] Problem 5.39
  - *Chapter 6:* **Calculus of Variations**
     - [ ] Problem ?.??
  - *Chapter 7:* **Lagrange's Equations**
