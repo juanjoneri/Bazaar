@@ -171,32 +171,86 @@ sh setup.sh
 ![ubuntu](./Screens/script.PNG)
 
 ### Testing that all is working
-Write the program
+To test that the envirmonment had been set up correctly and that the **instruction set architecture** was working as expected, I used a sample code available at the [RISC V website](https://riscv.org/risc-v-foundation/).
+
+I saved the probram to a file called `hello.c` using the echo command, provided that the program was so short.
 
 ```bash
 cd $TOP
 echo -e '#include <stdio.h>\n int main(void) { printf("Hello world!\\n"); return 0; }' > hello.c
 ```
 
-Build the program with
+![ubuntu](./Screens/hellonano.PNG)
+
+This program is supposed to output the string `hello world!` when assembled and executed correctly. Such simple and small programs are usually used by programmers to test their development environments, as we are doing in this case.
+
+The folloiwng command builds the program using **risc v toolchain**:
 ```bash
 riscv64-unknown-elf-gcc -o hello hello.c
 ```
 
-When you're done, you may think to do ./hello, but not so fast. We can't even run spike hello, because our "Hello world!" program involves a system call, which couldn't be handled by our host x86 system. We'll have to run the program within the proxy kernel, which itself is run by spike, the RISC-V architectural simulator. Run this command to run your "Hello world!" program:
+Because the "Hello world!" program involves a system call, which couldn't be handled by the host x86 system, i needed to run the program within the proxy kernel, which itself is run by spike, the RISC-V architectural simulator. The command that does this is the following:
 
-run using
 ```bash
 spike pk hello
 ```
 
+![ubuntu](./Screens/compile.PNG)
+
 The RISC-V architectural simulator, spike, takes as its argument the path of the binary to run. This binary is pk, and is located at $RISCV/riscv-elf/bin/pk. spike finds this automatically. Then, riscv-pk receives as its argument the name of the program you want to run.
+
+As we can see in the screen above, the program works as expected and the output that was generated was the expected one.
 
 ## Running code using the toolchain
 
-using the command `riscv64-unknown-elf-gcc --help > riscv64_help.txt` I redirected the output of the help command to find out more about the functionality of risc V compiler. The file was named [riscv64_help.txt](./riscv64_help.txt) and can be found in the attachments. Specifically, I found an option for saving temporary files created in the different stages of c compilation `-save-temps`.
+It is now time to run some more serious programs and assembly code to test the capabilities of this new instruction set architecture. Because I am only used to using **nasm** to compile c code, I wanted to learn more about the functionality of this new program, so I decided to print the --help pages..
+
+Using the command `riscv64-unknown-elf-gcc --help > riscv64_help.txt` I redirected the output of the help command to find out more about the functionality of risc V compiler. The file was named [riscv64_help.txt](./riscv64_help.txt) and can be found in the attachments. Specifically, I found an option for saving temporary files created in the different stages of c compilation `-save-temps`.
+
+When I run the hello.c program using this option the following fiiles where generated
 
 - *preprocessing* generated a hello.i file
 - *compilation* generated hello.s file, containing the generated assembly instructions.
 - *assembly* generated hello.o
 - *linking* generated hello, an executable program
+
+### hello.c
+```c
+#include <stdio.h>
+
+int main(void)
+{
+    printf("Hello world!\n");
+    return 0;
+}
+```
+
+### hello.s
+```asm
+.file       "hello.c"
+.option      nopic
+.section    .rodata
+.align       3
+.LC0:
+.string     "Hello world!"
+.text
+.align      2
+.globl      main
+.type       main, @function
+main:
+add         sp,sp,-16
+sd          ra,8(sp)
+sd          s0,0(sp)
+add         s0,sp,16
+lui         a5,%hi(.LC0)
+add         a0,a5,%lo(.LC0)
+call        puts
+li          a5,0
+mv          a0,a5
+ld          ra,8(sp)
+ld          s0,0(sp)
+add         sp,sp,16
+jr          ra
+.size       main, .-main
+.ident      "GCC: (GNU) 6.1.0"
+```
