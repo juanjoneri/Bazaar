@@ -28,7 +28,11 @@ Using the following built in command found in this Linux distribution I was able
 sudo lshw > system_specs.txt
 ```
 
+![ubuntu](./Screens/specs.PNG)
+
 ### Set up the directory
+
+First of all, after booting up Ubuntu, I opened bash and prepared a directory called RiscV, located in the Desktop, for use for this assignment by using the following command:
 
 ```bash
 pwd
@@ -37,6 +41,8 @@ mkdir RiscV
 cd RiscV/
 export TOP=$(pwd)
 ```
+
+![ubuntu](./Screens/mkdir.PNG)
 
 ### GCC Version
 
