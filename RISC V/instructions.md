@@ -67,10 +67,29 @@ export TOP=$(pwd)
 cd $TOP/riscv-tools
 export RISCV=$TOP/riscv
 export PATH=$PATH:$RISCV/bin
+cd ..
 ```
 
-This solved the issue in 23 minutes
+This solved the issue in 23 minutes.
+Because I needed to repeat this process every time I rebooted the system to continue with the assignment, I decided to write a bash script that would automate the process for me.
 
+First open nano editor:
+```bash
+nano setup.sh
+```
+
+Write the script
+```bash
+export TOP=$(pwd)
+cd $TOP/riscv-tools
+export RISCV=$TOP/riscv
+export PATH=$PATH:$RISCV/bin
+cd ..
+echo "all setup!"
+```
+
+Press <kbd>Ctr</kbd> + <kbd>x</kbd> to save and exit the program
+And then <kbd>y</kbd> to accept
 
 ### Testing that all is working
 Write the program
@@ -87,3 +106,12 @@ When you're done, you may think to do ./hello, but not so fast. We can't even ru
 run using `spike pk hello`
 
 The RISC-V architectural simulator, spike, takes as its argument the path of the binary to run. This binary is pk, and is located at $RISCV/riscv-elf/bin/pk. spike finds this automatically. Then, riscv-pk receives as its argument the name of the program you want to run.
+
+### Running code
+
+using the command `riscv64-unknown-elf-gcc --help > riscv64_help.txt` I redirected the output of the help command to find out more about the functionality of risc V compiler. The file was named [riscv64_help.txt](./riscv64_help.txt) and can be found in the attachments. Specifically, I found an option for saving temporary files created in the different stages of c compilation `-save-temps`.
+
+- *preprocessing* generated a hello.i file
+- *compilation* generated hello.s file, containing the generated assembly instructions.
+- *assembly* generated hello.o
+- *linking* generated hello, an executable program
