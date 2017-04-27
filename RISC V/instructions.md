@@ -209,12 +209,14 @@ Using the command `riscv64-unknown-elf-gcc --help > riscv64_help.txt` I redirect
 
 When I run the hello.c program using this option the following files where generated
 
-- *preprocessing* generated a hello.i file with some initial processing. This includes joining continued lines (lines ending with a \) and stripping comments.
-- *compilation* generated hello.s file, containing the generated assembly instructions.
-- *assembly* generated hello.o, by translating the assembly instructions to machine code, or object code.
-- *linking* generated hello, an executable program
+- **preprocessing** generated a `hello.i` file with some initial processing. This includes joining continued lines (lines ending with a \) and stripping comments.
+- **compilation** generated `hello.s` file, containing the generated assembly instructions.
+- **assembly** generated `hello.o,` by translating the assembly instructions to machine code, or object code.
+- **linking** generated `hello`, an executable program
 
-### hello.c
+![ubuntu](./Screens/ls.PNG)
+
+### hello.c found [here](./hello.c)
 ```c
 #include <stdio.h>
 
@@ -225,7 +227,7 @@ int main(void)
 }
 ```
 
-### hello.s
+### hello.s found [here](./hello.s)
 ```asm
     .file       "hello.c"
     .option      nopic
