@@ -195,6 +195,7 @@ Because the "Hello world!" program involves a system call, which couldn't be han
 spike pk hello
 ```
 
+![ubuntu](./Screens/ls.PNG)
 ![ubuntu](./Screens/compile.PNG)
 
 The RISC-V architectural simulator, spike, takes as its argument the path of the binary to run. This binary is pk, and is located at $RISCV/riscv-elf/bin/pk. spike finds this automatically. Then, riscv-pk receives as its argument the name of the program you want to run.
@@ -207,14 +208,17 @@ It is now time to run some more serious programs and assembly code to test the c
 
 Using the command `riscv64-unknown-elf-gcc --help > riscv64_help.txt` I redirected the output of the help command to find out more about the functionality of risc V compiler. The file was named [riscv64_help.txt](./riscv64_help.txt) and can be found in the attachments. Specifically, I found an option for saving temporary files created in the different stages of c compilation `-save-temps`.
 
+![ubuntu](./Screens/riskhelp.PNG)
+
 When I run the hello.c program using this option the following files where generated
+
+![ubuntu](./Screens/temps.PNG)
 
 - **preprocessing** generated a `hello.i` file with some initial processing. This includes joining continued lines (lines ending with a \) and stripping comments.
 - **compilation** generated `hello.s` file, containing the generated assembly instructions.
 - **assembly** generated `hello.o,` by translating the assembly instructions to machine code, or object code.
 - **linking** generated `hello`, an executable program
 
-![ubuntu](./Screens/ls.PNG)
 
 ### hello.c found [here](./hello.c)
 ```c
