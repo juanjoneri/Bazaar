@@ -48,6 +48,10 @@ export TOP=$(pwd)
 
 Check that `GCC --version` is newer than 4.8 for C++11 support (including thread_local).
 
+![ubuntu](./Screens/gccversion.PNG)
+
+We can see that indeed my version is newer than 4.8, being 5.4.0 as shown in the screenshots
+
 ### Obtaining and Compiling the Sources (7.87 SBU)
 
 clone the tools from the *riscv-tools* GitHub repository:
