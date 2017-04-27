@@ -207,11 +207,11 @@ It is now time to run some more serious programs and assembly code to test the c
 
 Using the command `riscv64-unknown-elf-gcc --help > riscv64_help.txt` I redirected the output of the help command to find out more about the functionality of risc V compiler. The file was named [riscv64_help.txt](./riscv64_help.txt) and can be found in the attachments. Specifically, I found an option for saving temporary files created in the different stages of c compilation `-save-temps`.
 
-When I run the hello.c program using this option the following fiiles where generated
+When I run the hello.c program using this option the following files where generated
 
-- *preprocessing* generated a hello.i file
+- *preprocessing* generated a hello.i file with some initial processing. This includes joining continued lines (lines ending with a \) and stripping comments.
 - *compilation* generated hello.s file, containing the generated assembly instructions.
-- *assembly* generated hello.o
+- *assembly* generated hello.o, by translating the assembly instructions to machine code, or object code.
 - *linking* generated hello, an executable program
 
 ### hello.c
@@ -227,30 +227,30 @@ int main(void)
 
 ### hello.s
 ```asm
-.file       "hello.c"
-.option      nopic
-.section    .rodata
-.align       3
+    .file       "hello.c"
+    .option      nopic
+    .section    .rodata
+    .align       3
 .LC0:
-.string     "Hello world!"
-.text
-.align      2
-.globl      main
-.type       main, @function
+    .string     "Hello world!"
+    .text
+    .align      2
+    .globl      main
+    .type       main, @function
 main:
-add         sp,sp,-16
-sd          ra,8(sp)
-sd          s0,0(sp)
-add         s0,sp,16
-lui         a5,%hi(.LC0)
-add         a0,a5,%lo(.LC0)
-call        puts
-li          a5,0
-mv          a0,a5
-ld          ra,8(sp)
-ld          s0,0(sp)
-add         sp,sp,16
-jr          ra
-.size       main, .-main
-.ident      "GCC: (GNU) 6.1.0"
+    add         sp,sp,-16
+    sd          ra,8(sp)
+    sd          s0,0(sp)
+    add         s0,sp,16
+    lui         a5,%hi(.LC0)
+    add         a0,a5,%lo(.LC0)
+    call        puts
+    li          a5,0
+    mv          a0,a5
+    ld          ra,8(sp)
+    ld          s0,0(sp)
+    add         sp,sp,16
+    jr          ra
+    .size       main, .-main
+    .ident      "GCC: (GNU) 6.1.0"
 ```
