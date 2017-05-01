@@ -288,4 +288,4 @@ riscv64-unknown-elf-gcc -save-temps -o multiplication_table multiplication_table
 spike pk Multiplication_table
 ```
 
-![output](./multiplication_out.PNG)
+![output](./Screens/multiplication_out.PNG)
