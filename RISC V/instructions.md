@@ -51,7 +51,7 @@ Using the following built in command found in this **Linux** distribution I was 
 sudo lshw > system_specs.txt
 ```
 
-![ubuntu](./Screens/specs.PNG)
+![ubuntu specs](./Screens/specs.PNG)
 
 ### Set up the directory
 
@@ -65,13 +65,13 @@ cd RiscV/
 export TOP=$(pwd)
 ```
 
-![ubuntu](./Screens/mkdir.PNG)
+![mk dir](./Screens/mkdir.PNG)
 
 ### GCC Version
 
 Check that `GCC --version` is newer than 4.8 for C++11 support (including thread_local).
 
-![ubuntu](./Screens/gccversion.PNG)
+![gcc version](./Screens/gccversion.PNG)
 
 We can see that indeed my version is newer than 4.8, being **5.4.0** as shown in the screenshots
 
@@ -89,7 +89,7 @@ cd $TOP/riscv-tools
 git submodule update --init --recursive
 ```
 
-![ubuntu](./Screens/long.PNG)
+![long output](./Screens/long.PNG)
 
 I also needed to install other packages to build **GCC**, including _flex, bison, autotools, libmpc, libmpfr, and libgmp_. This step took 2 minutes and was necessary for the specific distribution of Linux that I was running.
 I also had to give **super user** permission to the system to perform the command
@@ -105,7 +105,7 @@ export RISCV=$TOP/riscv
 export PATH=$PATH:$RISCV/bin
 ```
 
-![ubuntu](./Screens/variable.PNG)
+![variable](./Screens/variable.PNG)
 
 Because the last two steps had taken so long, _(almost two hours)_ I had to turn off the computer and go to sleep at this point _(this note will be important further on in the paper)_
 
@@ -115,7 +115,7 @@ With everything else set up, I just run the build script.
 ./build.sh
 ```
 
-![ubuntu](./Screens/4error.PNG)
+![getting an error](./Screens/4error.PNG)
 
 As can be seen in the screen above, the command threw the following error.
 
@@ -136,7 +136,7 @@ export PATH=$PATH:$RISCV/bin
 cd ..
 ```
 
-![ubuntu](./Screens/4solved.PNG)
+![solved the issue](./Screens/4solved.PNG)
 
 This solved the issue in 23 minutes.
 Because I needed to repeat this process every time I rebooted the system to continue with the assignment, I decided to write a bash script that would automate the process for me, and that would make it more agile in the future. I used **nano** bash editor for this task:
@@ -156,7 +156,7 @@ cd ..
 echo "all setup!"
 ```
 
-![ubuntu](./Screens/scriptnano.PNG)
+![nano script](./Screens/scriptnano.PNG)
 
 Press <kbd>Ctr</kbd> + <kbd>x</kbd> to save and exit the program
 And then <kbd>y</kbd> to accept
@@ -168,7 +168,7 @@ Run the script:
 sh setup.sh
 ```
 
-![ubuntu](./Screens/script.PNG)
+![script](./Screens/script.PNG)
 
 ### Testing that all is working
 To test that the envirmonment had been set up correctly and that the **instruction set architecture** was working as expected, I used a sample code available at the [RISC V website](https://riscv.org/risc-v-foundation/).
@@ -180,7 +180,7 @@ cd $TOP
 echo -e '#include <stdio.h>\n int main(void) { printf("Hello world!\\n"); return 0; }' > hello.c
 ```
 
-![ubuntu](./Screens/hellonano.PNG)
+![hello c in nano](./Screens/hellonano.PNG)
 
 This program is supposed to output the string `hello world!` when assembled and executed correctly. Such simple and small programs are usually used by programmers to test their development environments, as we are doing in this case.
 
@@ -195,8 +195,8 @@ Because the "Hello world!" program involves a system call, which couldn't be han
 spike pk hello
 ```
 
-![ubuntu](./Screens/ls.PNG)
-![ubuntu](./Screens/compile.PNG)
+![list](./Screens/ls.PNG)
+![compile](./Screens/compile.PNG)
 
 The RISC-V architectural simulator, spike, takes as its argument the path of the binary to run. This binary is pk, and is located at $RISCV/riscv-elf/bin/pk. spike finds this automatically. Then, riscv-pk receives as its argument the name of the program you want to run.
 
@@ -208,11 +208,11 @@ It is now time to run some more serious programs and assembly code to test the c
 
 Using the command `riscv64-unknown-elf-gcc --help > riscv64_help.txt` I redirected the output of the help command to find out more about the functionality of risc V compiler. The file was named [riscv64_help.txt](./riscv64_help.txt) and can be found in the attachments. Specifically, I found an option for saving temporary files created in the different stages of c compilation `-save-temps`.
 
-![ubuntu](./Screens/riskhelp.PNG)
+![getting help from risk](./Screens/riskhelp.PNG)
 
 When I run the hello.c program using this option the following files where generated
 
-![ubuntu](./Screens/temps.PNG)
+![getting the temps](./Screens/temps.PNG)
 
 - **preprocessing** generated a `hello.i` file with some initial processing. This includes joining continued lines (lines ending with a \) and stripping comments.
 - **compilation** generated `hello.s` file, containing the generated assembly instructions.
@@ -220,7 +220,7 @@ When I run the hello.c program using this option the following files where gener
 - **linking** generated `hello`, an executable program
 
 
-### hello.c found [here](./hello.c)
+#### hello.c found [here](./hello.c)
 ```c
 #include <stdio.h>
 
@@ -231,7 +231,7 @@ int main(void)
 }
 ```
 
-### hello.s found [here](./hello.s)
+#### hello.s found [here](./hello.s)
 ```asm
     .file       "hello.c"
     .option      nopic
@@ -260,3 +260,32 @@ main:
     .size       main, .-main
     .ident      "GCC: (GNU) 6.1.0"
 ```
+
+### Multiplication_table.c found [here](./Multiplication_table.c)
+
+I then tried with a more complicated example that I had wrote when practicing the c programing language called **Multiplication_table** which returns the first 10 multiples of the selected number as imputed from **standard in** in the command line
+
+```c
+#include <stdio.h>
+int main()
+{
+    int n, i;
+
+    printf("Enter an integer: ");
+    scanf("%d",&n);
+
+    for(i=1; i<=10; ++i)
+    {
+        printf("%d * %d = %d \n", n, i, n*i);
+    }
+    return 0;
+}
+```
+
+This was the output generated after running the commands:
+```bash
+riscv64-unknown-elf-gcc -save-temps -o multiplication_table multiplication_table.c
+spike pk Multiplication_table
+```
+
+![output](./multiplication_out.PNG)
