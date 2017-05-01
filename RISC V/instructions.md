@@ -204,13 +204,17 @@ As we can see in the screen above, the program works as expected and the output 
 
 ## Running code using the toolchain
 
+For this part of the assignment the short paper by *Yunsup Lee* found in the attachments was very helpful. This paper is also available in the attachments [here](./tut3-riscv.pdf)
+
+![diagram](./Screens/diagram_asm.PNG)
+
 It is now time to run some more serious programs and assembly code to test the capabilities of this new instruction set architecture. Because I am only used to using **nasm** to compile c code, I wanted to learn more about the functionality of this new program, so I decided to print the --help pages..
 
 Using the command `riscv64-unknown-elf-gcc --help > riscv64_help.txt` I redirected the output of the help command to find out more about the functionality of risc V compiler. The file was named [riscv64_help.txt](./riscv64_help.txt) and can be found in the attachments. Specifically, I found an option for saving temporary files created in the different stages of c compilation `-save-temps`.
 
 ![getting help from risk](./Screens/riskhelp.PNG)
 
-When I run the hello.c program using this option the following files where generated
+When I run the hello.c program using this option the following files where generated.
 
 ![getting the temps](./Screens/temps.PNG)
 
@@ -285,7 +289,7 @@ int main()
 This was the output generated after running the commands:
 ```bash
 riscv64-unknown-elf-gcc -save-temps -o multiplication_table multiplication_table.c
-spike pk Multiplication_table
+spike pk multiplication_table
 ```
 
 ![output](./Screens/multiplication_out.PNG)
