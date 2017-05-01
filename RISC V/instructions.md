@@ -265,6 +265,16 @@ main:
     .ident      "GCC: (GNU) 6.1.0"
 ```
 
+Now I just need to run the generated executable file usning this command:
+
+```bash
+riscv64-unknown-elf-gcc -save-temps -o hello hello.c
+spike pk hello
+```
+That generated the following
+
+![outpt](./Screens/hello_c.PNG)
+
 ### Multiplication_table.c found [here](./Multiplication_table.c)
 
 I then tried with a more complicated example that I had wrote when practicing the c programing language called **Multiplication_table** which returns the first 10 multiples of the selected number as imputed from **standard in** in the command line
@@ -293,3 +303,93 @@ spike pk multiplication_table
 ```
 
 ![output](./Screens/multiplication_out.PNG)
+
+### Running Assembly Code
+
+This was the most challenging part of the assignment. For this part I had to consult the resources that were provided by the instructor *Edward Katz*. Specially useful was the [o	RISC-V Reference Card (instruction set cheat sheet)](http://www.cl.cam.ac.uk/teaching/1617/ECAD+Arch/files/docs/RISCVGreenCardv8-20151013.pdf).
+
+I also had to take another look at the help page mentioned [above](./riscv64_help.txt) and found a very interesting option that helped me solve the problem:
+
+![lang](./Screens/language.PNG)
+
+I learned that by executing the following command I would be able to link assembly code, effectively generating the a.out file I was lookin for !
+
+```bash
+riscv64-unknown-elf-gcc -x assembler <NAME>.s
+spike pk a.out
+```
+
+#### First test, hello world
+
+I first tested this using my previous example: [hello.s](./hello.s)
+
+```bash
+riscv64-unknown-elf-gcc -x assembler hello.s
+spike pk a.out
+```
+
+And got the expected output:
+
+![asm](./Screens/first_asm.PNG)
+
+#### Second test, adding two integers
+
+For the second test, I wrote a assembly program that would ask the user for two integers and return the sum of the two. This program was originally written to learn the language for my Computer Systems Organization class, but had to be tweaked for compatibility with RISC-V instruction set requirements.
+
+This file is also available [here > add.s](./add.s)
+
+```asm
+    .file	"add.c"
+    .option nopic
+    .section	.rodata
+    .align	3
+.LC0:
+    .string	"Enter two integers: "
+    .align	3
+.LC1:
+    .string	"%d %d"
+    .align	3
+.LC2:
+    .string	"%d + %d = %d"
+    .text
+    .align	2
+    .globl	main
+    .type	main, @function
+main:
+    add	sp,sp,-32
+    sd	ra,24(sp)
+    sd	s0,16(sp)
+    add	s0,sp,32
+    lui	a5,%hi(.LC0)
+    add	a0,a5,%lo(.LC0)
+    call	printf
+    add	a4,s0,-28
+    add	a5,s0,-24
+    mv	a2,a4
+    mv	a1,a5
+    lui	a5,%hi(.LC1)
+    add	a0,a5,%lo(.LC1)
+    call	scanf
+    lw	a4,-24(s0)
+    lw	a5,-28(s0)
+    addw	a5,a4,a5
+    sw	a5,-20(s0)
+    lw	a5,-24(s0)
+    lw	a4,-28(s0)
+    lw	a3,-20(s0)
+    mv	a2,a4
+    mv	a1,a5
+    lui	a5,%hi(.LC2)
+    add	a0,a5,%lo(.LC2)
+    call	printf
+    li	a5,0
+    mv	a0,a5
+    ld	ra,24(sp)
+    ld	s0,16(sp)
+    add	sp,sp,32
+    jr	ra
+    .size	main, .-main
+    .ident	"GCC: (GNU) 6.1.0"
+```
+
+![asm2](./Screens/add_compiler.PNG)
