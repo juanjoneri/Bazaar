@@ -450,4 +450,11 @@ main:
     .cfi_endproc
 ```
 
+And here is the output of running the same command on this file:
+
+```bash
+riscv64-unknown-elf-gcc -x assembler add.s
+spike pk a.out
+```
+
 ![asm2](./Screens/add_compiler.PNG)
