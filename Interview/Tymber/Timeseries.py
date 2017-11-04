@@ -9,8 +9,7 @@ class DataPoint(object):
     Each member of this class represents a data point
     with a date and a list of engagement dictionaries (type, count)
     """
-    _engagement_keys = ('type', 'count')
-    _engagements = [] # One point can have multiple engagements, stored as dictionaries
+    _engagements = {} # One point can have multiple engagements, stored as dictionaries
 
     def __init__(self, date, *engagements):
         self.date = date
@@ -19,19 +18,19 @@ class DataPoint(object):
     # return them as it would be expected from the constructor
     @property
     def engagements(self):
-        return [(engagement['type'], engagement['count']) for engagement in self._engagements]
+        return self._engagements.items()
 
     # engagements should be provided as in constructor: al list of (type, count) touples
     @engagements.setter
     def engagements(self, new_engagements):
-        self._engagements = [dict(zip(self._engagement_keys, engagement)) for engagement in new_engagements]
+        self._engagements = dict(new_engagements)
 
     def __str__(self):
-        self.name = '{0:%Y}-{0:%m}'.format(self.date)
-        self._engagements.sort(key=lambda e: e['type'])
-        for engagement in self._engagements:
-            self.name += ', {}, {}'.format(engagement['type'], engagement['count'])
-        return self.name
+        self._name = '{0:%Y}-{0:%m}'.format(self.date)
+        for e_type, e_count in sorted(self._engagements.items(), key=lambda e: e[0]):
+            # Sorted by key
+            self._name += ', {}, {}'.format(e_type, e_count)
+        return self._name
 
     # Used to select the correct range to print out
     def __lt__(self, other):
