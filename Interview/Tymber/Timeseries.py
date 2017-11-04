@@ -2,7 +2,7 @@ import sys
 import re
 import collections
 import datetime
-from copy import deepcopy
+import copy
 
 class DataPoint(object):
     """
@@ -13,21 +13,26 @@ class DataPoint(object):
 
     def __init__(self, date, *engagements):
         self.date = date
-        self.engagements = engagements #go through the setter
+        self.engagements = engagements
 
     # return them as it would be expected from the constructor
     @property
     def engagements(self):
-        return self._engagements.items()
+        return list(self._engagements.copy().items())
 
     # engagements should be provided as in constructor: al list of (type, count) touples
     @engagements.setter
     def engagements(self, new_engagements):
-        self._engagements = dict(new_engagements)
+        self._engagements = {}
+        for e_type, e_count in new_engagements:
+            if e_type in self._engagements:
+                self._engagements[e_type] += e_count
+            else:
+                self._engagements[e_type] = e_count
 
     def __str__(self):
         self._name = '{0:%Y}-{0:%m}'.format(self.date)
-        for e_type, e_count in sorted(self._engagements.items(), key=lambda e: e[0]):
+        for e_type, e_count in sorted(self.engagements, key=lambda e: e[0]):
             # Sorted by key
             self._name += ', {}, {}'.format(e_type, e_count)
         return self._name
@@ -49,10 +54,7 @@ class DataPoint(object):
     @staticmethod
     def combine(*data_points):
         combination_date = data_points[0].date
-        combination_engagements = []
-        for data_point in data_points:
-            combination_engagements.extend(data_point.engagements)
-
+        combination_engagements = [engagement for data_point in data_points for engagement in data_point.engagements]
         return DataPoint(combination_date, *combination_engagements)
 
 data_point_pattern = re.compile(r'(\d{4})-(\d{2})-(\d{2})[ ]*,[ ]*(\w+)[ ]*,[ ]*(\d+)\n')
@@ -75,19 +77,17 @@ def parse_data_point(line):
         raise ValueError('line does not fit data point pattern')
 
 
-def combine_repetitions(structure):
+def combine_repetitions(structure, combination_function):
     combined_structure = []
-    for point in structure:
-        if point not in combined_structure:
-            combination = DataPoint.combine(*[p for p in structure if p == point])
+    for value in structure:
+        if value not in combined_structure:
+            combination = combination_function([v for v in structure if v == value])
             combined_structure.append(combination)
     return combined_structure
 
 if __name__ == '__main__':
     start, end = parse_date_interval(sys.stdin.readline())
     time_series = []
-    repeated = []
-
 
     for line in sys.stdin:
         try:
@@ -96,7 +96,7 @@ if __name__ == '__main__':
         except ValueError:
             continue
 
-    time_series = combine_repetitions(time_series)
+    time_series = combine_repetitions(time_series, lambda points: DataPoint.combine(*points))
     correct_range = [point for point in reversed(sorted(time_series)) if start < point.date < end]
 
     for point in correct_range:
