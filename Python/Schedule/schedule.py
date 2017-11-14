@@ -2,7 +2,6 @@ import pandas as pd
 import numpy as np
 from datetime import time
 from datetime import datetime
-import re
 
 class Course:
 
@@ -33,9 +32,12 @@ class Course:
         overlapping_days = any(set(self.days) & set(other.days))
         return same_class or (same_times and overlapping_days)
 
+    def __lt__(self, other):
+        return self.name < other.name
+
 class Schedule:
-    _courses = []
     units = 0
+    _courses = []
 
     _labels = "| {:<30} | {:^5} | {:^8} | {:^8} |\n".format('Title','Days','Start T', 'End T')
     _separator = "|" + "-"*32 + "|" + "-"*7 + "|" + "-"*10 + "|" + "-"*10 + "|\n"
@@ -46,27 +48,42 @@ class Schedule:
         self.units = sum([course.units for course in self.courses])
 
     def __str__(self):
+        for course in self.courses:
+            self.name += str(course)
         return self.name
+
+    def __eq__(self, other):
+        if self.units != other.units: return False
+        for i in range(len(self.courses)):
+            if self.courses[i] != other.courses[i]:
+                return False
+        return True
+
+    def __lt__(self, other):
+        return self.units > other.units
 
     @property
     def courses(self):
-        return self._courses
+        return sorted(self._courses)
 
     @courses.setter
     def courses(self, courses_data):
+        self._courses = []
         for course_data in courses_data:
             new_course = Course(*course_data)
             if new_course not in self._courses:
-                self.courses.append(new_course)
+                self._courses.append(new_course)
                 self.units += new_course.units
-                self.name += str(new_course)
 
 if __name__ == '__main__':
-    # Save your classes in order of priority and I will create a schedule for you...
-    df = pd.read_csv('raw.csv', delimiter=',')
-    courses = []
-    units = 0
+    classes = pd.read_csv('raw.csv', delimiter=',').values
+    schedules = []
+    # Build 20 random schedules that work, print only the uniques
+    for i in range(100):
+        schedule = Schedule(classes)
+        if schedule not in schedules:
+            schedules.append(schedule)
+        np.random.shuffle(classes)
 
-    schedule = Schedule(df.values)
-    print(str(schedule))
-    print(schedule.units)
+    for schedule in sorted(schedules):
+        print(str(schedule), '\n| Units: ', schedule.units, '\n')
