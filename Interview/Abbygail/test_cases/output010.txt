@@ -1,0 +1,4 @@
+1,28,50.3,Moscow
+2,5,49.4,Moscow
+3,7,48.6,Moscow
+4,8,42.6,Moscow

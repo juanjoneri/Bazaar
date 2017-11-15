@@ -1,4 +1,5 @@
-import sys
+import math
+from collections import deque
 
 class SearchItem(object):
 
@@ -25,11 +26,11 @@ def uniques(list1, list2):
 def paginate(num, results):
     items = [SearchItem(*result.split(',')) for result in results] # assuming input has correct format
 
-    leftovers = [] # used as a queue
-    pages = [[] for _ in range(len(results) // num + 1)] # 2D list representing pages
+    leftovers = deque() # used as a queue
+    pages = [[] for _ in range(math.ceil(len(results) / num))]  # 2D list representing pages
 
-    while any(items):
-        current_item = leftovers.pop(0) if any(leftovers) else items.pop(0) # try to follow score order
+    while any(items) or any(leftovers):
+        current_item = leftovers.popleft() if any(leftovers) else items.pop(0) # try to follow score order
         current_page = next(page for page in pages if len(page) < num)
 
         if current_item not in current_page:
@@ -40,7 +41,7 @@ def paginate(num, results):
                 current_page.append(items.pop(next_unique_index))
             except StopIteration:
                 if any(leftovers):
-                    current_page.append(leftovers.pop(0))
+                    current_page.append(leftovers.popleft())
                 else:
                     current_page.append(current_item)
                     continue
@@ -58,18 +59,13 @@ def paginate(num, results):
 if __name__ == '__main__':
     results = [
     "1,28,300.6,San Francisco",
-    "4,5,209.1,San Francisco",
-    "20,7,203.4,Oakland",
-    "6,8,202.9,San Francisco",
-    "6,10,199.8,San Francisco",
-    "1,16,190.5,San Francisco",
-    "6,29,185.3,San Francisco",
-    "7,20,180.0,Oakland",
-    "6,21,162.2,San Francisco",
-    "2,18,161.7,San Jose",
-    "2,30,149.8,San Jose",
-    "3,76,146.7,San Francisco",
-    "2,14,141.8,San Jose"
+    "2,5,209.1,San Francisco",
+    "1,10,205,San Francisco",
+    "3,7,203.4,Oakland",
+    "4,8,202.9,San Francisco",
+    "1,10,199.8,San Francisco",
+    "5,16,190.5,San Francisco",
+    "1,10,190,San Francisco",
     ]
-    num = 5
+    num = 3
     print(paginate(num, results))
