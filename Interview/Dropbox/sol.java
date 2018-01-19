@@ -1,17 +1,6 @@
 import java.io.*;
 import java.util.*;
 
-/*
-Input:
-q(int)
-m(number of shared lines) n(number of confidencial lines)
--folderID(int) [folderMembers(int) cows] #use id as hash for folder with cow members
--folderID(int) [folderMembers(int) cows]
--...
-g(number of lines)
--u v
-
-*/
 public class Solution {
 
 public static void main(String args[] ) throws Exception {

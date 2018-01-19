@@ -46,7 +46,7 @@ if __name__ == '__main__':
         parent, child = map(int, input_file.readline().split())
         all_folders[parent].add_subfolder(all_folders[child])
 
-    # Find uncool cows
+    # Find uncool Cows
 
     uncool_cows = set()
 
