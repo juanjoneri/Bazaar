@@ -1,9 +1,9 @@
 import sys
 
 class Folder:
-    def __init__(self, id, contents=[], confidential=False):
+    def __init__(self, id, members=[], confidential=False):
         self.id = id
-        self.contents = set(contents)
+        self.members = set(members)
         self.confidential = confidential
         self.subfolders = set()
 
@@ -11,13 +11,13 @@ class Folder:
     def is_leaf(self):
         return not any(self.subfolders)
 
-    def add_contents(self, new_contents):
-        self.contents.update(new_contents)
+    def add_members(self, new_members):
+        self.members.update(new_members)
 
     def add_subfolder(self, other):
         self.subfolders.add(other)
         if not other.confidential:
-            other.add_contents(self.contents)
+            other.add_members(self.members)
 
 
 if __name__ == '__main__':
@@ -32,11 +32,11 @@ if __name__ == '__main__':
     shared_lines, confidential_lines = map(int, input_file.readline().split())
 
     for current_line in range(shared_lines + confidential_lines):
-        folder_id, *folder_contents = map(int, input_file.readline().split())
+        folder_id, *folder_members = map(int, input_file.readline().split())
         is_confidential = current_line >= shared_lines
-        new_folder = Folder(folder_id, folder_contents, is_confidential)
+        new_folder = Folder(folder_id, folder_members, is_confidential)
         all_folders[folder_id] = (new_folder)
-        all_cows.update(folder_contents)
+        all_cows.update(folder_members)
 
     # Extablish Folder herarchy
 
@@ -52,6 +52,6 @@ if __name__ == '__main__':
 
     for folder_id, folder in all_folders.items():
         if folder.is_leaf and folder.confidential:
-            uncool_cows.update(all_cows - folder.contents)
+            uncool_cows.update(all_cows - folder.members)
 
     print(*sorted(uncool_cows), sep=' ')
