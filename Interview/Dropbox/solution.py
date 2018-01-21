@@ -49,7 +49,7 @@ if __name__ == '__main__':
     # Find uncool Cows
 
     uncool_cows = set()
-    for folder in all_folders.itervalues():
+    for folder in all_folders.values():
         if folder.is_leaf and folder.confidential:
             uncool_cows.update(all_cows - folder.members)
 
