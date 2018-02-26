@@ -18,7 +18,6 @@ if __name__ == '__main__':
     skills = list(map(int, stdin.readline().split())) # skill of each student
     k = int(stdin.readline()) # target skill of each team
 
-    filtered_skills = list(filter(lambda x: x < k - 1, skills))
 
-    combinations_summing_k = filter_combinations(list(combinations(filtered_skills , 3)), k)
+    combinations_summing_k = filter_combinations(list(combinations(skills , 3)), k)
     print (len(combinations_summing_k))
