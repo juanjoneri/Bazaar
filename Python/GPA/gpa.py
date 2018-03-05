@@ -18,4 +18,4 @@ if __name__ == '__main__':
     
     for category in categories:
         scores = [(int(units), scale[letter]) for cat, name, units, letter in class_data if cat == category]
-        print(category, calculate_gpa(scores))
+        print(f'{category}: {calculate_gpa(scores)}')
