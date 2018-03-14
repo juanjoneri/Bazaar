@@ -2,7 +2,7 @@
 
 def backtracker(options, solves, size, start=[]):
     # solves is a so 'far so good' function for possible solution
-    def extend(solution=start):
+    def extend(solution):
         for option in options:
             solution.append(option)
             if solves(solution):
@@ -11,7 +11,7 @@ def backtracker(options, solves, size, start=[]):
             solution.pop()
         return None
 
-    return extend()
+    return extend(start)
 
 class Grid:
     def __init__(self, grid):
