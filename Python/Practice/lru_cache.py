@@ -28,16 +28,22 @@ class Cache:
         self.memo[key] = new = QueueNode(key, value)
         self._push(new)
 
-        if self.full:
+        if self.too_big:
             self._pop()
 
     def _update(self, key, new_value):
         node = self.memo[key]
         node.value = new_value
-        if node.prev:
+        if node.prev and node.next:
             node.prev.next = node.next
-        if node.next:
             node.next.prev = node.prev
+        elif node.prev:
+            # node is front
+            self.front = node.prev
+            self.front.next = None
+        else:
+            # node is back
+            return
         self._push(node)
 
     def _push(self, node):
@@ -56,12 +62,20 @@ class Cache:
         del self.memo[last.key]
 
     @classmethod
-    def memoize(cls, size):
-        return cls(size)
+    def memoize(cls, max):
+        def decorator(fun):
+            cache = cls(max)
+            def wrapper(*args):
+                if args not in cache.memo:
+                    cache[args] = fun(*args)
+                    print(cache)
+                return cache[args]
+            return wrapper
+        return decorator
 
     @property
-    def full(self):
-        return len(self.memo.keys()) >= self.max_size
+    def too_big(self):
+        return len(self.memo.keys()) > self.max_size
 
     def __str__(self):
         if not self.back:
@@ -74,24 +88,17 @@ class Cache:
             self._names.append(str(current))
         
         return f"in -> {' <-> '.join(self._names)} -> out" 
-         
+
+@Cache.memoize(max = 3)
+def fib(n):
+    if n == 0:
+        return 0
+    elif n == 1:
+        return 1
+    return fib(n-1) + fib(n-2)
 
 if __name__ == '__main__':
-    cache = Cache.memoize(3)
-    cache[1] = 'I'
-    cache[2] = 'Love'
-    cache[3] = 'You'
-    cache[4] = 'So'
-    cache[5] = 'Much'
-    cache[3] = 'fermat'
-    cache[10] = 'new'
+    
+    print(fib(6))
 
 
-    print(cache)
-    cache._pop()
-    print(cache)
-    new = QueueNode(1000, 'hi')
-    cache._push(new)
-    print(cache)
-    print(cache[5])
-    print(cache)
