@@ -1,4 +1,3 @@
-
 class QueueNode:
     def __init__(self, key, value):
         self.key = key
@@ -56,6 +55,10 @@ class Cache:
         self.front.next = None
         del self.memo[last.key]
 
+    @classmethod
+    def memoize(cls, size):
+        return cls(size)
+
     @property
     def full(self):
         return len(self.memo.keys()) >= self.max_size
@@ -74,7 +77,7 @@ class Cache:
          
 
 if __name__ == '__main__':
-    cache = Cache(5)
+    cache = Cache.memoize(3)
     cache[1] = 'I'
     cache[2] = 'Love'
     cache[3] = 'You'
