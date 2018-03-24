@@ -6,6 +6,11 @@
 5. Compute decryption exponent `d` s.t. e*d % φ(N) = 1
 '''
 
+import os
+from Crypto.Util import number
+from math import ceil, log
+from encode import to_number, to_text
+
 # We will use the Euclidean algorithm to find d
 def inverse(x, m):
     a, b, u = 0, m, 1
@@ -15,37 +20,55 @@ def inverse(x, m):
     if b == 1: return a % m
 
 
-class RSA:
-    def __init__(self, p, q):
-        self.N = p * q   # PUBLIC
-        self.e = 104681  # PUBLIC
-        
-        self._phi = (p-1)*(q-1)
-        self._d = inverse(self.e, self._phi)
-        
-    def encrypt(self, message):
-        if message > self.N:
-            raise ValueError('This number is too big to encrypt')
-        return (message ** self.e) % self.N
+def rsa_tool(p, q):
+    N = p * q
+    phi = (p-1)*(q-1)
+    e = number.getPrime(ceil(log(phi/2)), os.urandom)
+    d = inverse(e, phi)
 
-    def decrypt(self, code):
-        return (code ** self._d) % self.N
+    public = (N, e)
+    private = (N, d)
 
-from encode import to_number, to_text
-if __name__ == '__main__':
-    rsa = RSA(311, 499)
-    assert(rsa.decrypt(rsa.encrypt(1)) == 1)
-    assert(rsa.decrypt(rsa.encrypt(64508)) == 64508)
+    # decrypts a single unit of information smaller than N
+    def decrypt(code):
+        nonlocal private
+        N, d = private
+        if code >= N: raise ValueError('Too big to decrypt')
+        else: return (code ** d) % N
     
-    message = 'hellomyfriendthismessageisjustforyou'
-    message_parts = to_number(message, 4)
-    encrypted_parts = []
+    return public, decrypt
+
+def encrypt(public, message):
+    N, e = public
+    return message ** e % N
+
+def encrypt_parts(public, message_parts):
+    code_parts = []
     for part in message_parts:
-        encrypted_parts.append(rsa.encrypt(part))
+        code_parts.append(encrypt(public, part))
+    return code_parts
 
-    decrypted_parts = []
-    for part in encrypted_parts:
-        decrypted_parts.append(rsa.decrypt(part))
+def decrypt_parts(decrypt, code_parts):
+    message_parts = []
+    for part in code_parts:
+        message_parts.append(decrypt(part))
+    return message_parts
 
-    assert(to_text(decrypted_parts) == message)
+
+def test():
+    public, decrypt = rsa_tool(311, 499)
+
+    code = encrypt(public, 43)
+    assert(decrypt(code) == 43)
+
+    message = 'hellomyfriendthismessageisjustforyou'
+    parts = to_number(message, 4)
+    code_parts = encrypt_parts(public, parts)
+    message_parts = decrypt_parts(decrypt, code_parts)
+    assert(to_text(message_parts) == message)
+
+
+if __name__ == '__main__':
+    test()
+
 
