@@ -1,18 +1,12 @@
-<!DOCTYPE html>
-<html>
+{% extends "portfolio/base.html" %}
 
-<head>
-  <title>JuanJo</title>
-</head>
-
-<body>
+{% block content %}
     <h1>You are in main</h1>
 
     {% for featurette in featurettes %}
-    <h1> {{ featurette.title }}</h1>
+    <h1> {{ featurette.title|title }}</h1>
     <p> {{ featurette.content }}</p>
     {% endfor %}
 
-</body>
 
-</html>
+{% endblock %}
