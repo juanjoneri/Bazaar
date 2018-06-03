@@ -14,7 +14,7 @@ def index(request):
 
 def experience(request):
     context = {
-        "experiences": Experience.objects.all(),
+        "experiences": Experience.objects.order_by('from_date').reverse(),
         "nbar": "experience"
     }
     return render(request, "portfolio/experience.html", context)

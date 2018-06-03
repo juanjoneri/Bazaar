@@ -7,7 +7,7 @@
     <ul class="timeline">
     {% for experience in experiences %}
 
-      <li class="timeline-inverted">
+      <li class="timeline{% if forloop.counter|divisibleby:2 %}-inverted{% endif %}">
         <div class="timeline-badge primary"><i class="{{ experience.icon }} fa-lg"></i></div>
 
         <div class="timeline-panel">
