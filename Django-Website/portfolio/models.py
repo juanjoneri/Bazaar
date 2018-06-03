@@ -15,7 +15,7 @@ class Project(models.Model):
     title = models.CharField(max_length=32)
     content = models.TextField()
     link = models.URLField()
-    button_icon = models.CharField(max_length=16)
+    button_icon = models.CharField(max_length=32)
     img = models.CharField(max_length=64)
     release_date = models.DateField()
 
