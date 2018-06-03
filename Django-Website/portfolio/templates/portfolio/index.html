@@ -14,7 +14,8 @@
           <a href="{{ featurette.link }}"><button type="button" class="btn btn-primary">{{ featurette.button }}</button></a>
         </div>
         <div class="col d-none d-md-block">
-          <img src="{{ featurette.img_url }}" class="rounded float-left featurette-img">
+          {% load static %}
+          <img src="{% static 'portfolio/img/' %}{{ featurette.img }}" class="rounded float-left featurette-img">
         </div>
       </div>
 
