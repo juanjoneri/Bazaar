@@ -1,0 +1,69 @@
+{% extends "portfolio/base.html" %}
+
+{% block navbar %}
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container">
+    <a class="navbar-brand" href="/">JuanJo</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+<span class="navbar-toggler-icon"></span>
+</button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+
+        <li class="nav-item {% if nbar == 'education' %}active{% endif %}">
+          <a class="nav-link" href="/education">Education</a>
+        </li>
+
+        <li class="nav-item {% if nbar == 'experience' %}active{% endif %}">
+          <a class="nav-link" href="experience">Experience</a>
+        </li>
+
+        <li class="nav-item {% if nbar == 'projects' %}active{% endif %} dropdown">
+          <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Projects</a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="/projects">All Projects</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Project2</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Project3</a>
+          </div>
+        </li>
+
+      </ul>
+
+    </div>
+  </div>
+</nav>
+{% endblock %}
+
+{% block body %}
+
+<div class="container">
+  <div class="page-header">
+    <h1>
+      {% block title %}{% endblock %}
+    </h1>
+    <hr>
+  </div>
+  {% block content %} {% endblock %}
+</div>
+
+{% endblock %}
+
+{% block footer %}
+
+<footer class="footer">
+  <div class="container">
+      <p>&copy; 2018 JuanJo, Inc.&ensp;
+          <a href="https://github.com/juanjoneri"><i class="fab fa-github-square fa-lg"></i></a>&ensp;
+          <a href="https://www.linkedin.com/in/juanjoneri"><i class="fab fa-linkedin fa-lg"></i></a>&ensp;
+          <a href="https://www.youtube.com/channel/UCGlZanVS95DZZDMcRDfK7TQ/videos?shelf_id=0&view=15&sort=dd"><i class="fab fa-youtube-square fa-lg"></i></a>&ensp;
+          <a href="https://www.instagram.com/juanjo.neri/?hl=en"><i class="fab fa-instagram fa-lg"></i></a>&ensp;
+          <a href="https://medium.com/@juanjo.neri"><i class="fab fa-medium fa-lg"></i></a>&ensp;
+          <a href="https://www.quora.com/profile/Juan-Neri-2"><i class="fab fa-quora fa-lg"></i></a>
+      </p>
+  </div>
+</footer>
+
+{% endblock %}

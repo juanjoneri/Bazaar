@@ -1,11 +1,25 @@
-{% extends "portfolio/base.html" %}
+{% extends "portfolio/navbar.html" %}
+
+{% block title %}Juan José Neri{% endblock %}
 
 {% block content %}
-    <h1>You are in main</h1>
 
     {% for featurette in featurettes %}
-    <h1> {{ featurette.title|title }}</h1>
-    <p> {{ featurette.content }}</p>
+    <div class="container">
+
+      <div class="row">
+        <div class="col-md-8 col-sm-12 {% if forloop.counter|divisibleby:2 %}order-12{% endif %}">
+          <h2> {{ featurette.title|title }}</h2>
+          <p> {{ featurette.content }}</p>
+          <a href="{{ featurette.link }}"><button type="button" class="btn btn-primary">{{ featurette.button }}</button></a>
+        </div>
+        <div class="col d-none d-md-block">
+          <img src="{{ featurette.img_url }}" class="rounded float-left featurette-img">
+        </div>
+      </div>
+
+    </div>
+    <hr>
     {% endfor %}
 
 
