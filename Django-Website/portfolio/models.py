@@ -10,3 +10,14 @@ class Featurette(models.Model):
 
     def __str__(self):
         return f'{self.title}'
+
+class Project(models.Model):
+    title = models.CharField(max_length=32)
+    content = models.TextField()
+    link = models.URLField()
+    button_icon = models.CharField(max_length=16)
+    img = models.CharField(max_length=64)
+    release_date = models.DateField()
+
+    def __str__(self):
+        return self.title
