@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>JuanJo</title>
+</head>
+
+<body>
+    <h1>You are in main</h1>
+
+    {% for featurette in featurettes %}
+    <h1> {{ featurette.title }}</h1>
+    <p> {{ featurette.content }}</p>
+    {% endfor %}
+
+</body>
+
+</html>

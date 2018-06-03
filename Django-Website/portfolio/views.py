@@ -1,6 +1,11 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 
+from .models import Featurette
+
 # Create your views here.
 def index(request):
-    return HttpResponse('Your are in main')
+    context = {
+        "featurettes": Featurette.objects.all()
+    }
+    return render(request, "portfolio/index.html", context)
