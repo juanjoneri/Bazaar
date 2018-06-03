@@ -21,3 +21,14 @@ class Project(models.Model):
 
     def __str__(self):
         return self.title
+
+class Experience(models.Model):
+    title = models.CharField(max_length=32)
+    content = models.TextField()
+    from_date = models.DateField()
+    to_date = models.DateField()
+    location = models.CharField(max_length=32)
+    icon = models.CharField(max_length=32, default="fas fa-sun")
+
+    def __str__(self):
+        return self.title

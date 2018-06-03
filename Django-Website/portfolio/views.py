@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 
-from .models import Featurette, Project
+from .models import Featurette, Project, Experience
 
 # Create your views here.
 def index(request):
@@ -10,6 +10,15 @@ def index(request):
         "nbar": "index"
     }
     return render(request, "portfolio/index.html", context)
+
+
+def experience(request):
+    context = {
+        "experiences": Experience.objects.all(),
+        "nbar": "experience"
+    }
+    return render(request, "portfolio/experience.html", context)
+
 
 def projects(request):
     context = {
