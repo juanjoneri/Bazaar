@@ -27,7 +27,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
     '35.237.143.118',
-    '35.237.221.209'
+    '35.237.221.209',
+    'www.juanjoneri.com'
 ]
 
 
