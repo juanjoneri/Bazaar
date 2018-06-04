@@ -1,3 +1,5 @@
 Interview/Names.txt
 Interview/Abbygail/
 .DS_Store
+__pycache__/
+*.py[cod]
