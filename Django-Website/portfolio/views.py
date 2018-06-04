@@ -29,3 +29,15 @@ def projects(request):
 
 def education(request):
     return render(request, "portfolio/education.html", context={"nbar": "education"})
+
+def resume(request):
+    with open('./portfolio/static/portfolio/doc/CV.pdf', 'rb') as pdf:
+        response = HttpResponse(pdf.read(),content_type='application/pdf')
+        response['Content-Disposition'] = 'filename=resume.pdf'
+        return response
+
+def transcript(request):
+    with open('./portfolio/static/portfolio/doc/Transcript.pdf', 'rb') as pdf:
+        response = HttpResponse(pdf.read(),content_type='application/pdf')
+        response['Content-Disposition'] = 'filename=transcript.pdf'
+        return response
