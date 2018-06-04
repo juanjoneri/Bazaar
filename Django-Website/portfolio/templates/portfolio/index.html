@@ -1,6 +1,6 @@
 {% extends "portfolio/navbar.html" %}
 
-{% block title %}Juan José Neri{% endblock %}
+{% block title %}👨‍💻 Juan José Neri{% endblock %}
 
 {% block content %}
 
@@ -11,7 +11,7 @@
         <div class="col-md-8 col-sm-12 {% if forloop.counter|divisibleby:2 %}order-12{% endif %}">
           <h2> {{ featurette.title|title }}</h2>
           <p> {{ featurette.content }}</p>
-          <a href="{{ featurette.link }}"><button type="button" class="btn btn-primary">{{ featurette.button }}</button></a>
+          <a href="{{ featurette.link }}"><button type="button" class="btn btn-outline-dark">{{ featurette.button }}</button></a>
         </div>
         <div class="col d-none d-md-block">
           {% load static %}

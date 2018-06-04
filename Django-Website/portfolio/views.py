@@ -26,3 +26,6 @@ def projects(request):
         "nbar": "projects"
     }
     return render(request, "portfolio/projects.html", context)
+
+def education(request):
+    return render(request, "portfolio/education.html", context={"nbar": "education"})
