@@ -1,10 +1,14 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 
-from .models import Featurette, Project, Experience
+from .models import Featurette, Project, Experience, Visit
 
 # Create your views here.
 def index(request):
+    # register the Visit
+    ip = request.META.get('HTTP_X_FORWARDED_FOR', request.META.get('REMOTE_ADDR')).split(',')[-1].strip()
+    visit = Visit(ip=str(ip))
+    visit.save()
     context = {
         "featurettes": Featurette.objects.all(),
         "nbar": "index"

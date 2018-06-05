@@ -1,6 +1,16 @@
 from django.db import models
+import django
 
+from datetime import datetime
 # Create your models here.
+
+class Visit(models.Model):
+    date = models.DateTimeField(default=django.utils.timezone.now)
+    ip = models.CharField(max_length=32)
+
+    def __str__(self):
+        return "{} @ {}".format(self.ip, self.date)
+
 class Featurette(models.Model):
     title = models.CharField(max_length=32)
     content = models.TextField()
