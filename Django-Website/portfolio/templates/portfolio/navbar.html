@@ -10,7 +10,7 @@
 {% block navbar %}
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container">
-    <a class="navbar-brand" href="/">JuanJo</a>
+    <a class="navbar-brand" href="{% url 'index' %}">JuanJo</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 <span class="navbar-toggler-icon"></span>
 </button>
@@ -19,15 +19,15 @@
       <ul class="navbar-nav mr-auto">
 
         <li class="nav-item {% if nbar == 'education' %}active{% endif %}">
-          <a class="nav-link" href="/education">Education</a>
+          <a class="nav-link" href="{% url 'education' %}">Education</a>
         </li>
 
         <li class="nav-item {% if nbar == 'experience' %}active{% endif %}">
-          <a class="nav-link" href="experience">Experience</a>
+          <a class="nav-link" href="{% url 'experience' %}">Experience</a>
         </li>
 
         <li class="nav-item {% if nbar == 'projects' %}active{% endif %}">
-          <a class="nav-link" href="projects">Projects</a>
+          <a class="nav-link" href="{% url 'projects' %}">Projects</a>
         </li>
 
       </ul>

@@ -26,6 +26,8 @@ SECRET_KEY = 'p0#yx4$8cxqwmu@#&!406&8*7!_!uf02jlm*y8=dntg%1i1#@s'
 DEBUG = True
 
 ALLOWED_HOSTS = [
+    'localhost',
+    '127.0.0.1',
     '35.237.143.118',
     '35.237.221.209',
     'www.juanjoneri.com',
