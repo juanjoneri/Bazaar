@@ -5,10 +5,11 @@ from .models import Featurette, Project, Experience, Visit
 
 # Create your views here.
 def index(request):
-    # register the Visit
-    ip = request.META.get('HTTP_X_FORWARDED_FOR', request.META.get('REMOTE_ADDR')).split(',')[-1].strip()
-    visit = Visit(ip=str(ip))
-    visit.save()
+    # register the Visit if not running locally
+    ip = str(request.META.get('HTTP_X_FORWARDED_FOR', request.META.get('REMOTE_ADDR')).split(',')[-1].strip())
+    if ip != '127.0.0.1':
+        visit = Visit(ip=str(ip))
+        visit.save()
     context = {
         "featurettes": Featurette.objects.all(),
         "nbar": "index"

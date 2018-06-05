@@ -1,11 +1,13 @@
+from __future__ import division
 import math
+
 
 def substring_of_repeated(A, B):
     n, m = len(A), len(B)
-    answer = math.ceil(m / n)
-    if B in A * answer:
+    answer = int(math.ceil(m / n))
+    if B in (A * answer):
         return answer
-    elif B in A * (answer + 1):
+    elif B in (A * (answer + 1)):
         return answer + 1
     return -1
 
@@ -14,7 +16,9 @@ def tests_q1():
     assert substring_of_repeated(A='abcd', B='cdabcdab') == 3
     assert substring_of_repeated(A='abed', B='cdabcdab') == -1
     assert substring_of_repeated(A='cdabcdab', B='abcd') == 1
+    assert substring_of_repeated(A='abba', B='aa') == 2
     assert substring_of_repeated(A='a', B='aa') == 2
+    assert substring_of_repeated(A='abc', B='cabca') == 3
     print('All tests passed for question 1')
 
 # ---------------------------------------------------------------
@@ -44,13 +48,13 @@ class Node():
 
 class Tree():
     def __init__(self, A, E):
-        self.longest_path = 0
         self.nodes = [None] + [Node(label) for label in A]
 
         for i in range(len(E)//2):
             parent_index, child_index = E[2*i], E[2*i+1]
             self.nodes[parent_index].add_child(self.nodes[child_index])
 
+        self.longest_path = 0
         self._longest_path(self.root)
 
     @property
@@ -73,7 +77,9 @@ class Tree():
         if root.right_child and root.right_child.label == root.label:
             right_path = right_length + 1
 
+        # If this is the final node, we can use both paths
         self.longest_path = max(self.longest_path, left_path + right_path)
+        # Only one can side be used in a recursion
         return max(left_path, right_path)
 
 
@@ -82,11 +88,15 @@ class Tree():
 def longest_path(A, E):
     # A[i] is the label of node i+1
     # E[2i] <-> E[2i+1] describe the indexes of an edge
-    tree = Tree(A, E)
-    return tree.longest_path
+    return Tree(A, E).longest_path
 
 def tests_q2():
-    print longest_path(A=[1, 1, 1, 2, 2], E=[1, 2, 1, 3, 2, 4, 2, 5])
+    assert longest_path(A=[1, 1, 1, 2, 2], E=[1, 2, 1, 3, 2, 4, 2, 5]) == 2
+    assert longest_path(A=[1, 1, 1, 1, 2, 1, 2], E=[1, 2, 1, 3, 2, 4, 2, 5, 3, 6, 3, 7]) == 4
+    assert longest_path(A=[1, 2, 1, 1, 2, 1, 2], E=[1, 2, 1, 3, 2, 4, 2, 5, 3, 6, 3, 7]) == 2
+    assert longest_path(A=[1, 1], E=[1, 2]) == 1
+    print 'All tests passed for question 2'
 
 if __name__ == '__main__':
+    tests_q1()
     tests_q2()
