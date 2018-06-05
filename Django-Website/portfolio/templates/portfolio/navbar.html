@@ -1,5 +1,7 @@
 {% extends "portfolio/base.html" %}
 
+{% block banner %} {% if nbar == 'index' %} 👨‍💻 {% elif nbar == 'education' %} 👨‍🎓 {% elif nbar == 'experience' %} 👨‍💼 {% elif nbar == 'projects' %} 👨‍🔧 {% endif %} {{ nbar|title }} {% endblock %}
+
 {% block styles %}
   {% load static %}
   <link rel="stylesheet" href="{% static 'portfolio/styles.css' %}" />
