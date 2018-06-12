@@ -39,5 +39,5 @@ def alphanumeric_abreviations(remaining, sofar=''):
     yield abreviation
 
 if __name__ == '__main__':
-    known = set(alphanumeric_abreviations('ABC'))
-    print(known)
+    KNOWN = set(alphanumeric_abreviations('ABC'))
+    print(KNOWN)
