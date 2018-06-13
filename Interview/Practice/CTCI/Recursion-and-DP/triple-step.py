@@ -3,15 +3,23 @@ A child is running up a staircase with n steps and can hop either 1 step, 2 step
 Implement a method to count how many possible ways the child can run up the stairs.
 """
 
+def memoize(recursion):
+    memo = {}
+    def wrapper(arg):
+        if arg not in memo:
+            memo[arg] = recursion(arg)
+        return memo[arg]
 
-from collections import defaultdict
+    return wrapper
 
-def run_stairs(n, memo={0:1}):
+
+@memoize
+def run_stairs(n):
     if n < 0:
         return 0
-    if n not in memo:
-        memo[n] = run_stairs(n-1) + run_stairs(n-2) + run_stairs(n-3)
-    return memo[n]
+    elif n == 0:
+        return 1
+    return run_stairs(n-1) + run_stairs(n-2) + run_stairs(n-3)
 
 
 
