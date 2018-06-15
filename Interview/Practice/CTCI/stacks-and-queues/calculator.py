@@ -4,6 +4,7 @@ compute the result
 """
 
 import re
+from collections import deque
 
 class Operation():
     PRIORITY = '*/'
@@ -35,8 +36,8 @@ def compute(equation):
     first_value, second_value, *values = [int(name) for name in re.findall(r'\d+', equation)]
     first_op, *ops = [Operation(name) for name in re.findall(r'[+\-*/]', equation)]
 
-    values_stack = [first_value, second_value]
-    ops_stack = [first_op]
+    values_stack = deque([first_value, second_value])
+    ops_stack = deque([first_op])
 
     for value, op in zip(values, ops):
         if op <= ops_stack[-1]:

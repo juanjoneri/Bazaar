@@ -1,31 +1,16 @@
 """
 Implement a MyQueue class which implements a queue using two stacks.
 """
-
-
-class Stack():
-    """stack"""
-    def __init__(self):
-        self._elements = []
-
-    def push(self, element):
-        return self._elements.append(element)
-
-    def pop(self):
-        return self._elements.pop()
-
-    @property
-    def empty(self):
-        return not any(self._elements)
+from collections import deque
 
 class MyQueue():
     """queue"""
     def __init__(self):
-        self._left_stack = Stack() # main stack
-        self._right_stack = Stack() # helper stack
+        self._left_stack = deque() # main stack
+        self._right_stack = deque() # helper stack
 
     def enqueue(self, element):
-        return self._left_stack.push(element)
+        return self._left_stack.append(element)
 
     def dequeue(self):
         self._swap_right()
@@ -34,12 +19,12 @@ class MyQueue():
         return element
 
     def _swap_right(self):
-        while not self._left_stack.empty:
-            self._right_stack.push(self._left_stack.pop())
+        while any(self._left_stack):
+            self._right_stack.append(self._left_stack.pop())
 
     def _swap_left(self):
-        while not self._right_stack.empty:
-            self._left_stack.push(self._right_stack.pop())
+        while any(self._right_stack):
+            self._left_stack.append(self._right_stack.pop())
 
 def main():
     q = MyQueue()
