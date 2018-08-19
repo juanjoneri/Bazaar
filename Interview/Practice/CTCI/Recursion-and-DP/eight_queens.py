@@ -1,5 +1,3 @@
-
-
 def backtracker(options, safe_up_to, size):
     solution = [None] * size
 
@@ -24,9 +22,6 @@ def eight_queens(n):
 
 
     return backtracker(range(n), valid, n)
-
-
-
 
 def main():
     print(eight_queens(4))
