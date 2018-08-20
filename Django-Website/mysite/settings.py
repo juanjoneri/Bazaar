@@ -31,7 +31,8 @@ ALLOWED_HOSTS = [
     '35.237.143.118',
     '35.237.221.209',
     'www.juanjoneri.com',
-    'juanjoneri.com'
+    'juanjoneri.com',
+    'juanjoneri.pythonanywhere.com',
 ]
 
 
@@ -129,4 +130,4 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 STATIC_URL = '/static/'
-STATIC_ROOT = "/var/www/example.com/static/"
+STATIC_ROOT = "/home/juanjoneri/Bazaar/Django-Website/static"
