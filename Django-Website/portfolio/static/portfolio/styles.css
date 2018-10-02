@@ -5,7 +5,18 @@ html {
 }
 body {
   font-family: montserrat, sans-serif;
+  font-size: 19px;
+  color: #666666;
   margin-bottom: 60px; /* Margin bottom by footer height */
+}
+
+h1 {
+    font-size: 42px;
+    color: black;
+}
+
+h2 {
+    color: #111111;
 }
 
 .featurette-img {

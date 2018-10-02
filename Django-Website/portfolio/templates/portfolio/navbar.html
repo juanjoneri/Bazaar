@@ -35,8 +35,16 @@
       </ul>
 
       {% load static %}
-      <a href="{% static 'portfolio/doc/CV.pdf' %}"><button class="btn btn-outline-secondary my-2 my-sm-0"><i class="far fa-file-alt"></i> Resume</button></a>&ensp;
-      <a href="{% static 'portfolio/doc/Transcript.pdf' %}"><button class="btn btn-outline-secondary my-2 my-sm-0"><i class="fas fa-graduation-cap"></i> Transcript</button></a>
+      <a href="{% static 'portfolio/doc/Transcript.pdf' %}"><button class="btn btn-outline-dark my-2 my-sm-0"><i class="fas fa-graduation-cap"></i> Transcript</button></a>&ensp;
+      <div class="dropdown">
+          <button class="btn btn-outline-dark my-2 my-sm-0 dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="far fa-file-alt"></i> Resume
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" href="{% static 'portfolio/doc/Resume.pdf' %}">Resume</a>
+            <a class="dropdown-item" href="{% static 'portfolio/doc/Curriculum.pdf' %}">Curriculum</a>
+          </div>
+      </div>
 
     </div>
   </div>
@@ -61,13 +69,13 @@
 
 <footer class="footer">
   <div class="container">
-      <p>&copy; 2018 JuanJo, Inc.&ensp;
-          <a href="https://github.com/juanjoneri"><i class="fab fa-github-square fa-lg"></i></a>&ensp;
-          <a href="https://www.linkedin.com/in/juanjoneri"><i class="fab fa-linkedin fa-lg"></i></a>&ensp;
-          <a href="https://www.youtube.com/channel/UCGlZanVS95DZZDMcRDfK7TQ/videos?shelf_id=0&view=15&sort=dd"><i class="fab fa-youtube-square fa-lg"></i></a>&ensp;
-          <a href="https://www.instagram.com/juanjo.neri/?hl=en"><i class="fab fa-instagram fa-lg"></i></a>&ensp;
-          <a href="https://medium.com/@juanjo.neri"><i class="fab fa-medium fa-lg"></i></a>&ensp;
-          <a href="https://www.quora.com/profile/Juan-Neri-2"><i class="fab fa-quora fa-lg"></i></a>
+      <p>&copy; 2018 JuanJo.&ensp;
+          <a href="http://github.juanjoneri.com"><i class="fab fa-github-square fa-lg"></i></a>&ensp;
+          <a href="http://linkedin.juanjoneri.com"><i class="fab fa-linkedin fa-lg"></i></a>&ensp;
+          <a href="http://youtube.juanjoneri.com"><i class="fab fa-youtube-square fa-lg"></i></a>&ensp;
+          <a href="http://instagram.juanjoneri.com"><i class="fab fa-instagram fa-lg"></i></a>&ensp;
+          <a href="http://medium.juanjoneri.com"><i class="fab fa-medium fa-lg"></i></a>&ensp;
+          <a href="http://quora.juanjoneri.com"><i class="fab fa-quora fa-lg"></i></a>
       </p>
   </div>
 </footer>

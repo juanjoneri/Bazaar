@@ -26,7 +26,7 @@ class Project(models.Model):
         return self.title
 
 class Experience(models.Model):
-    title = models.CharField(max_length=32)
+    title = models.CharField(max_length=64)
     content = models.TextField()
     from_date = models.DateField()
     to_date = models.DateField()
