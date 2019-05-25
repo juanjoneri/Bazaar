@@ -1,0 +1,27 @@
+{% extends "portfolio/navbar.html" %}
+
+{% block title %}👨‍🔧 Projects{% endblock %}
+
+{% block content %}
+<div class="container">
+
+    <div class="card-columns">
+    {% for project in projects %}
+      <div class="card">
+        {% load static %}
+        <img class="card-img-top img-fluid" src="{% static 'portfolio/img/projects/' %}{{ project.img }}">
+        <div class="card-body">
+          <h5 class="card-title">{{ project.title }}</h5>
+          <p class="card-text">{{ project.content }}</p>
+          <a href="{{ project.link }}">
+            <button type="button" class="btn btn-outline-dark">
+              <i class="{{ project.button_icon }}"></i>
+            </button>
+          </a>
+        </div>
+      </div>
+
+    {% endfor %}
+    </div>
+</div>
+{% endblock %}

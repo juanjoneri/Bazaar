@@ -1,0 +1,31 @@
+{% extends "portfolio/navbar.html" %}
+
+{% block title %}👨‍💼 Experience{% endblock %}
+
+{% block content %}
+
+    <ul class="timeline">
+    {% for experience in experiences %}
+
+      <li class="timeline{% if forloop.counter|divisibleby:2 %}-inverted{% endif %}">
+        <div class="timeline-badge primary"><i class="{{ experience.icon }} fa-lg"></i></div>
+
+        <div class="timeline-panel">
+            <div class="timeline-heading">
+              <h3 class="timeline-title">{{ experience.title }}</h3>
+              <p>
+                <small class="text-muted"><i class="fas fa-clock"></i> {{ experience.from_date|date:'M, Y' }} → {{ experience.to_date|date:'M, Y' }}</small><br>
+                <small class="text-muted"><i class="fas fa-globe"></i> {{ experience.location }} </small>
+              </p>
+              <hr>
+            </div>
+            <div class="timeline-body">
+              <p>{{ experience.content }}</p>
+            </div>
+        </div>
+    </li>
+
+    {% endfor %}
+  </ul>
+
+{% endblock %}

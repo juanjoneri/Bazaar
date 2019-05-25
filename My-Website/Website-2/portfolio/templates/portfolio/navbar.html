@@ -1,0 +1,83 @@
+{% extends "portfolio/base.html" %}
+
+{% block banner %} {% if nbar == 'index' %} 👨‍💻 {% elif nbar == 'education' %} 👨‍🎓 {% elif nbar == 'experience' %} 👨‍💼 {% elif nbar == 'projects' %} 👨‍🔧 {% endif %} {{ nbar|title }} {% endblock %}
+
+{% block styles %}
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'portfolio/styles.css' %}" />
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'portfolio/timeline.css' %}" />
+{% endblock %}
+
+{% block navbar %}
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container">
+    <a class="navbar-brand" href="{% url 'index' %}">JuanJo</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+<span class="navbar-toggler-icon"></span>
+</button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+
+        <li class="nav-item {% if nbar == 'education' %}active{% endif %}">
+          <a class="nav-link" href="{% url 'education' %}">Education</a>
+        </li>
+
+        <li class="nav-item {% if nbar == 'experience' %}active{% endif %}">
+          <a class="nav-link" href="{% url 'experience' %}">Experience</a>
+        </li>
+
+        <li class="nav-item {% if nbar == 'projects' %}active{% endif %}">
+          <a class="nav-link" href="{% url 'projects' %}">Projects</a>
+        </li>
+
+      </ul>
+
+      {% load static %}
+      <a href="{% static 'portfolio/doc/Transcript.pdf' %}"><button class="btn btn-outline-dark my-2 my-sm-0"><i class="fas fa-graduation-cap"></i> Transcript</button></a>&ensp;
+      <div class="dropdown">
+          <button class="btn btn-outline-dark my-2 my-sm-0 dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="far fa-file-alt"></i> Resume
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" href="{% static 'portfolio/doc/Resume.pdf' %}">Resume</a>
+            <a class="dropdown-item" href="{% static 'portfolio/doc/Curriculum.pdf' %}">Curriculum</a>
+          </div>
+      </div>
+
+    </div>
+  </div>
+</nav>
+{% endblock %}
+
+{% block body %}
+
+<div class="container">
+  <div class="page-header">
+    <h1>
+      {% block title %}{% endblock %}
+    </h1>
+    <hr>
+  </div>
+  {% block content %} {% endblock %}
+</div>
+
+{% endblock %}
+
+{% block footer %}
+
+<footer class="footer">
+  <div class="container">
+      <p>&copy; 2018 JuanJo.&ensp;
+          <a href="http://github.juanjoneri.com"><i class="fab fa-github-square fa-lg"></i></a>&ensp;
+          <a href="http://linkedin.juanjoneri.com"><i class="fab fa-linkedin fa-lg"></i></a>&ensp;
+          <a href="http://youtube.juanjoneri.com"><i class="fab fa-youtube-square fa-lg"></i></a>&ensp;
+          <a href="http://instagram.juanjoneri.com"><i class="fab fa-instagram fa-lg"></i></a>&ensp;
+          <a href="http://medium.juanjoneri.com"><i class="fab fa-medium fa-lg"></i></a>&ensp;
+          <a href="http://quora.juanjoneri.com"><i class="fab fa-quora fa-lg"></i></a>
+      </p>
+  </div>
+</footer>
+
+{% endblock %}
